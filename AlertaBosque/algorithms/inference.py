@@ -24,8 +24,6 @@ def enumeration_ask(network, query: str, evidence: dict) -> dict:
     # Valida nombres de variables y dominio de la evidencia.
     network.validate_query(query, evidence)
 
-    # TODO: Add your code here
-    
     def enumerate_all(variables, event):
         if not variables:
             return 1.0
@@ -33,18 +31,17 @@ def enumeration_ask(network, query: str, evidence: dict) -> dict:
         rest = variables[1:]
 
         if first in event:
-          probability = network.probability(first, event[first], event)
-          return probability * enumerate_all(rest, event)
+            probability = network.probability(first, event[first], event)
+            return probability * enumerate_all(rest, event)
 
-        
         total = 0.0
 
         for value in [0, 1]:
-          new_event = event.copy()
-          new_event[first] = value
+            new_event = event.copy()
+            new_event[first] = value
 
-          probability = network.probability(first, value, new_event)
-          total += probability * enumerate_all(rest, new_event)
+            probability = network.probability(first, value, new_event)
+            total += probability * enumerate_all(rest, new_event)
 
         return total
 
@@ -77,4 +74,5 @@ def enumeration_ask(network, query: str, evidence: dict) -> dict:
         raise ValueError("La evidencia es imposible")
 
     return normalize(weights)
+    # FIN DEL BLOQUE DEL ESTUDIANTE
 

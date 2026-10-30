@@ -12,7 +12,6 @@ def normalize(weights: dict) -> dict:
     - Conserve las claves y su orden; no modifique weights.
     - Rechace pesos negativos, no finitos, diccionarios vacíos y suma cero.
     """
-    # TODO: Add your code here
     if not weights:
         raise ValueError("El diccionario está vacío")
 
@@ -29,6 +28,7 @@ def normalize(weights: dict) -> dict:
         key: weight / total
         for key, weight in weights.items()
     }
+    # FIN DEL BLOQUE DEL ESTUDIANTE
 
 
 def expected_utility(distribution: dict, utilities: dict) -> float:
