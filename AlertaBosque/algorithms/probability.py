@@ -51,8 +51,11 @@ def expected_utility(distribution: dict, utilities: dict) -> float:
         raise ValueError("La distribución debe sumar uno")
     if any(not math.isfinite(u) for u in utilities.values()):
         raise ValueError("Utilidades no finitas")
-    # TODO: Add your code here
-    raise NotImplementedError("Complete este bloque TODO")
+    
+    
+    eu_a = sum(distribution[s] * utilities[s] for s in distribution)
+    
+    return eu_a
     # FIN DEL BLOQUE DEL ESTUDIANTE
 
 
@@ -70,6 +73,17 @@ def best_action(distribution: dict, actions: dict) -> tuple[str, dict]:
     # Validación de las acciones; no modificar.
     if not actions:
         raise ValueError("Se requiere al menos una acción")
-    # TODO: Add your code here
-    raise NotImplementedError("Complete este bloque TODO")
+    
+    best_a = None
+    best_eu = -math.inf
+    final_dict = {}
+    for a in actions:
+        eu_a = expected_utility(distribution, actions[a])
+        if eu_a > best_eu:
+            best_a = a
+            best_eu = eu_a
+        final_dict[a] = eu_a
+    
+    return best_a, final_dict
+        
     # FIN DEL BLOQUE DEL ESTUDIANTE
